@@ -2,7 +2,7 @@ import os
 import base64
 import tempfile
 from flask_socketio import emit
-from detector import run_yolo_on_image
+from yolo import run_yolo_on_image
 
 def register_socket_events(socketio):
 

@@ -1,5 +1,9 @@
+Flask==2.2.2
+flask-socketio==5.3.3
+requests==2.32.3
+opencv-python==4.11.0.86
 ultralytics==8.3.75
 torch==2.6.0
 torchvision==0.21.0
-Flask==2.2.2
-opencv-python==4.11.0.86
+python-dotenv==0.21.1
+Werkzeug<3.0
