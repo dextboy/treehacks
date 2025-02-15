@@ -3,6 +3,7 @@ import wave
 import tempfile
 import requests
 from flask import Blueprint, request, jsonify
+from extensions import llama_client
 
 # Create the blueprint for speech-related endpoints.
 speech_to_text_bp = Blueprint('speech_to_text', __name__, url_prefix='/speech')
@@ -67,7 +68,7 @@ def chat_reply(transcription):
         conversation_context.append({"role": "user", "content": transcription})
         
         # Call your offline chat engine (this should be replaced with your actual API).
-        completion = offline.chat.completions.create(
+        completion = llama_client.chat.completions.create(
             model="gpt-4o-mini",
             messages=conversation_context,
         )
