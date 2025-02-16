@@ -46,7 +46,7 @@ sudo apt install alsa-utils
 
 ```bash
 git clone https://github.com/dextboy/treehacks.git
-cd your-repo
+cd treehacks/backend
 ```
 
 2. Set up a Python virtual environment (recommended):
