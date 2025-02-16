@@ -21,7 +21,7 @@
             <nav>
                 <ul class="flex space-x-4">
                     <li><a href="index.html" class="text-gray-700 hover:text-blue-600">Home</a></li>
-                    <li><a href="#" class="text-gray-700 hover:text-blue-600">About</a></li>
+                    <li><a href="about.html" class="text-gray-700 hover:text-blue-600">About</a></li>
                     <li><a href="features.html" class="text-gray-700 hover:text-blue-600">Features</a></li>
                     <li><a href="profile.html" class="text-gray-700 hover:text-blue-600">Profile</a></li>
                     <li><a href="#" class="text-gray-700 hover:text-blue-600">Contact</a></li>
@@ -31,61 +31,30 @@
     </header>
 
     <main class="max-w-4xl mx-auto my-10 p-6 bg-white rounded-lg shadow-lg">
+        <!-- Main Profiles Section -->
         <section class="mb-8">
-            <h2 class="text-2xl font-bold mb-4 text-blue-600">Profile</h2>
-            <div class="flex flex-col md:flex-row items-center">
-                <img alt="Profile picture of the user" class="w-32 h-32 rounded-full mb-4 md:mb-0 md:mr-4" height="150" src="https://storage.googleapis.com/a1aa/image/WqU7whvmhoediUgY-ji-hlKKcLXWmEa1HmGxv1KKxRk.jpg" width="150"/>
-                <div>
-                    <h3 class="text-xl font-bold">John Doe</h3>
-                    <p class="text-gray-700">School Year: 10</p>
-                    <p class="text-gray-700">Subject of Interest: Mathematics</p>
-                </div>
+            <h2 class="text-2xl font-bold mb-4 text-blue-600">Main Profiles</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <a href="profile1.html" class="block bg-gray-100 p-4 rounded-lg shadow hover:bg-gray-200 transition">
+                    <img alt="Profile picture of user 1" class="w-32 h-32 rounded-full mx-auto mb-4" src="bryannpfp.webp"/>
+                    <h3 class="text-xl font-bold text-center">Bryann Revilla</h3>
+                    <p class="text-gray-700 text-center">School Year: Freshman</p>
+                    <p class="text-gray-700 text-center">English: Reading</p>
+                </a>
+                <a href="profile2.html" class="block bg-gray-100 p-4 rounded-lg shadow hover:bg-gray-200 transition">
+                    <img alt="Profile picture of user 2" class="w-32 h-32 rounded-full mx-auto mb-4" src="dexterpfp.webp"/>
+                    <h3 class="text-xl font-bold text-center">Dexter Tan</h3>
+                    <p class="text-gray-700 text-center">School Year: Junior</p>
+                    <p class="text-gray-700 text-center">English: Writing</p>
+                </a>
+                <a href="profile3.html" class="block bg-gray-100 p-4 rounded-lg shadow hover:bg-gray-200 transition">
+                    <img alt="Profile picture of user 3" class="w-32 h-32 rounded-full mx-auto mb-4" src="yupfp.webp"/>
+                    <h3 class="text-xl font-bold text-center">Yu Ong</h3>
+                    <p class="text-gray-700 text-center">School Year: Freshman</p>
+                    <p class="text-gray-700 text-center">English: Grammar</p>
+                </a>
             </div>
         </section>
-
-        <section class="mb-8">
-            <h2 class="text-2xl font-bold mb-4 text-blue-600">Progress</h2>
-            <div class="mb-4">
-                <p class="text-gray-700">Mathematics</p>
-                <div class="w-full bg-gray-200 rounded-full h-4">
-                    <div id="mathProgress" class="bg-blue-600 h-4 rounded-full" style="width: 75%;"></div>
-                </div>
-            </div>
-            <div class="mb-4">
-                <p class="text-gray-700">Science</p>
-                <div class="w-full bg-gray-200 rounded-full h-4">
-                    <div id="scienceProgress" class="bg-green-600 h-4 rounded-full" style="width: 50%;"></div>
-                </div>
-            </div>
-            <div class="mb-4">
-                <p class="text-gray-700">History</p>
-                <div class="w-full bg-gray-200 rounded-full h-4">
-                    <div id="historyProgress" class="bg-purple-600 h-4 rounded-full" style="width: 30%;"></div>
-                </div>
-            </div>
-        </section>
-
-        <section class="mb-8">
-            <h2 class="text-2xl font-bold mb-4 text-blue-600">Ask a Question</h2>
-            <textarea class="w-full p-3 border rounded mb-4" id="questionText" placeholder="Type your question here..."></textarea>
-            <button class="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700 transition" onclick="askQuestion()">Ask</button>
-        </section>
-
-        <section>
-            <h2 class="text-2xl font-bold mb-4 text-blue-600">Recent Questions</h2>
-            <ul class="space-y-4" id="questionList">
-                <li class="bg-gray-100 p-4 rounded-lg shadow">
-                    <p class="text-gray-700">What is the Pythagorean theorem?</p>
-                </li>
-                <li class="bg-gray-100 p-4 rounded-lg shadow">
-                    <p class="text-gray-700">How do you solve quadratic equations?</p>
-                </li>
-                <li class="bg-gray-100 p-4 rounded-lg shadow">
-                    <p class="text-gray-700">What are the properties of triangles?</p>
-                </li>
-            </ul>
-        </section>
-    </main>
 
     <footer class="bg-white shadow-md mt-8">
         <div class="container mx-auto text-center p-4">
@@ -93,39 +62,4 @@
         </div>
     </footer>
 
-    <script>
-        function askQuestion() {
-            let question = document.getElementById('questionText').value;
-            if (question) {
-                let questionList = document.getElementById('questionList');
-                let newQuestion = document.createElement('li');
-                newQuestion.className = 'bg-gray-100 p-4 rounded-lg shadow';
-                newQuestion.innerHTML = `<p class="text-gray-700">${question}</p>`;
-                questionList.appendChild(newQuestion);
-                document.getElementById('questionText').value = '';
-            }
-        }
-
-        // Placeholder function to simulate backend data fetching
-        function fetchProgressData() {
-            // Simulated data from backend
-            return {
-                math: 75,
-                science: 50,
-                history: 30
-            };
-        }
-
-        // Function to update progress bars based on fetched data
-        function updateProgressBars() {
-            const progressData = fetchProgressData();
-            document.getElementById('mathProgress').style.width = progressData.math + '%';
-            document.getElementById('scienceProgress').style.width = progressData.science + '%';
-            document.getElementById('historyProgress').style.width = progressData.history + '%';
-        }
-
-        // Call the function to update progress bars on page load
-        document.addEventListener('DOMContentLoaded', updateProgressBars);
-    </script>
-</body>
-</html>
+    
