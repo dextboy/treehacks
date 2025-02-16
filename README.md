@@ -34,7 +34,6 @@ Install ALSA utilities using:
 sudo apt update
 sudo apt install alsa-utils
 ```
-````
 
 5. **Microphone and Speaker**:
    Ensure your microphone and speaker are properly connected and recognized by the system.
@@ -154,17 +153,4 @@ pip install -r requirements.txt
      ```
 
 ---
-
-## Contributors
-
-- **Your Name** (Project Maintainer)
-- [Additional Contributors]
-
----
-
-## License
-
-This project is licensed under the MIT License. See the `LICENSE` file for more details.
-
-```
 
