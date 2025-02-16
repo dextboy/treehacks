@@ -45,7 +45,7 @@ sudo apt install alsa-utils
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/your-repo.git
+git clone https://github.com/dextboy/treehacks.git
 cd your-repo
 ```
 
