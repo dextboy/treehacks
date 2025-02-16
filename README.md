@@ -71,6 +71,7 @@ pip install -r requirements.txt
    sudo apt install libportaudio2 libportaudiocpp0 portaudio19-dev
    ```
 
+
 5. Configure ALSA to use the correct audio device:
 
    - Edit the `~/.asoundrc` file:
@@ -165,6 +166,5 @@ pip install -r requirements.txt
 
 This project is licensed under the MIT License. See the `LICENSE` file for more details.
 
-```
 ```
 
