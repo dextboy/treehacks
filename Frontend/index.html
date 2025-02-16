@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Teacher.AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"/>
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"/>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+</head>
+<body class="font-roboto bg-white text-gray-800" onload="AOS.init();">
+    <header class="bg-blue-600 text-white">
+        <div class="container mx-auto flex justify-between items-center p-4">
+            <h1 class="text-2xl font-bold">Teacher.AI</h1>
+            <nav>
+                <ul class="flex space-x-4">
+                    <li><a href="index.html" class="hover:text-gray-300">Home</a></li>
+                    <li><a href="about.html" class="hover:text-gray-300">About</a></li>
+                    <li><a href="features.html" class="hover:text-gray-300">Features</a></li>
+                    <li><a href="profile.html" class="hover:text-gray-300">Profile</a></li>
+                    <li><a href="contact.html" class="hover:text-gray-300">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section id="home" class="relative">
+        <img src="https://news.utexas.edu/wp-content/uploads/2019/02/Student-Tech-1200x800-c-default.jpg" 
+             alt="Large photo of AI teacher setup" 
+             class="w-full h-96 object-cover">
+        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+            <h2 class="text-white text-4xl font-bold" data-aos="fade-up">Welcome to Teacher.AI</h2>
+        </div>
+    </section>
+    <section id="about" class="py-12 text-center">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold mb-4" data-aos="fade-right">About the Device</h2>
+            <p class="text-lg mb-8" data-aos="fade-left">Our AI Teacher uses the Jetson Orin Nano and a high-resolution camera to create personalized learning experiences.</p>
+            <img src="https://developer.download.nvidia.com/embedded/images/jetsonOrinNano/getting_started/jetson-orin-nano-qtr_numbered.png" 
+                 alt="Jetson Orin Nano and camera setup" class="mx-auto" height="300" width="700" data-aos="zoom-in">
+        </div>
+    </section>
+    <section id="features" class="py-12">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-6" data-aos="fade-up">Features</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="feature-card p-4 border rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300" data-aos="flip-left">
+                    <i class="fas fa-chalkboard-teacher text-4xl mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Personalized Teaching</h3>
+                    <p>AI Teacher provides personalized lessons in math and science based on each student's progress and knowledge level.</p>
+                </div>
+                <div class="feature-card p-4 border rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300" data-aos="flip-right">
+                    <i class="fas fa-camera text-4xl mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Face Scanning</h3>
+                    <p>Using a high-resolution camera, the AI Teacher scans faces to create and manage student profiles.</p>
+                    <a href="face-scanning.html" class="text-blue-600 hover:underline"></a>
+                </div>
+                <div class="feature-card p-4 border rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300" data-aos="flip-left">
+                    <i class="fas fa-microphone text-4xl mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Text to Speech</h3>
+                    <p>Students can ask questions and receive answers through the AI Teacher's text-to-speech functionality.</p>
+                    <a href="text-to-speech.html" class="text-blue-600 hover:underline"></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="profile" class="py-12">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-4" data-aos="fade-up">Create Your Profile</h2>
+            <p class="text-lg mb-8" data-aos="fade-down">Get started by creating your profile. The AI Teacher will use this information to tailor lessons to your needs.</p>
+            <a class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-300" href="create-profile.html">Create Profile</a>
+        </div>
+    </section>
+    <section id="contact" class="bg-gray-100 py-12">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-4" data-aos="fade-up">Contact Us</h2>
+            <p class="text-lg mb-8" data-aos="fade-down">Have questions? Get in touch with us to learn more about the AI Teacher.</p>
+            <a class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-300" href="mailto:info@aiteacher.com">Email </a>
+        </div>
+    </section>
+    <footer class="bg-blue-600 text-white py-4 text-center">
+        <div class="container mx-auto">
+            <p>&copy; 2025 Teacher.AI. All rights reserved.</p>
+        </div>
+    </footer>
+
+  
+</body>
+</html>
