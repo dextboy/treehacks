@@ -167,5 +167,3 @@ This project is licensed under the MIT License. See the `LICENSE` file for more 
 
 ```
 
-Replace placeholders like `your-username`, `your-repo`, and `Your Name` with actual project details. Let me know if you want to add specific steps or refine it further!
-```
