@@ -146,13 +146,13 @@
 
              fetch(JETSON_URL, { mode: "no-cors" })
                  .then(() => {
-                     console.log("✅ Jetson is online!");
+                     console.log(" Jetson is online!");
                      updateJetsonStatus(true);
                      clearInterval(pingInterval); // Stop checking once connected
                      updatePageWithData(); // Update the page with hardcoded data
                  })
                  .catch(() => {
-                     console.log("❌ Still waiting for connection...");
+                     console.log(" Still waiting for connection...");
                      updateJetsonStatus(false);
                  });
          }
@@ -162,11 +162,11 @@
              const statusElement = document.getElementById("jetsonStatus");
 
              if (isConnected) {
-                 statusElement.textContent = "✅ Jetson is Online!";
+                 statusElement.textContent = " Jetson is Online!";
                  statusElement.classList.add("text-green-600");
                  statusElement.classList.remove("text-gray-600", "text-red-600");
              } else {
-                 statusElement.textContent = "❌ Jetson is Offline!";
+                 statusElement.textContent = " Jetson is Offline!";
                  statusElement.classList.add("text-red-600");
                  statusElement.classList.remove("text-gray-600", "text-green-600");
              }
@@ -185,7 +185,7 @@
              let questionList = document.getElementById("questionList");
              let newMessage = document.createElement("li");
              newMessage.className = "bg-gray-100 p-4 rounded-lg shadow";
-             newMessage.innerHTML = `<p class="text-gray-700">🚀 Jetson is online! You can now ask real-time questions.</p>`;
+             newMessage.innerHTML = `<p class="text-gray-700"> Jetson is online! You can now ask real-time questions.</p>`;
              questionList.prepend(newMessage);
          }
 
