@@ -5,8 +5,9 @@ from ultralytics import YOLO
 import sqlite3
 
 # ✅ Load the YOLO model once at module level
-MODEL_PATH = "/Users/yuxiong/runs/detect/train3/weights/best.pt"  # Adjust this to your model path
+MODEL_PATH = "best.pt"  # Adjust this to your model path
 model = YOLO(MODEL_PATH)
+
 
 def run_yolo_on_frame(frame):
     """
@@ -29,11 +30,12 @@ def run_yolo_on_frame(frame):
                 "x2": float(box.xyxy[0][2]),  # x2
                 "y2": float(box.xyxy[0][3]),  # y2
                 "confidence": float(box.conf[0]),  # Confidence score
-                "class": int(box.cls[0])  # Class ID
+                "class": int(box.cls[0]),  # Class ID
             }
             detections.append(detection)
 
     return detections
+
 
 def process_video_stream(duration=600):
     """
@@ -79,5 +81,5 @@ def process_video_stream(duration=600):
     cap.release()
     cv2.destroyAllWindows()
 
-# ✅ Run the video processing function
 
+# ✅ Run the video processing function
