@@ -1,4 +1,3 @@
-````markdown
 # Teacher.ai
 
 This project provides functionality to record audio until silence is detected, process the audio using a speech-to-text API, and generate a response with synthesized speech. The application is designed to run on a Jetson device with ALSA and Flask setup.
