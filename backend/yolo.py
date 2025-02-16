@@ -5,7 +5,7 @@ from ultralytics import YOLO
 import sqlite3
 
 # ✅ Load the YOLO model once at module level
-MODEL_PATH = "/Users/yuxiong/runs/detect/train3/weights/best.pt"  # Adjust this to your model path
+MODEL_PATH = "best.pt"  # Adjust this to your model path
 model = YOLO(MODEL_PATH)
 
 def run_yolo_on_frame(frame):
