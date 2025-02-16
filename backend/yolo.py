@@ -2,6 +2,7 @@ import cv2
 import time
 import os
 from ultralytics import YOLO
+import sqlite3
 
 # ✅ Load the YOLO model once at module level
 MODEL_PATH = "/Users/yuxiong/runs/detect/train3/weights/best.pt"  # Adjust this to your model path
@@ -79,5 +80,4 @@ def process_video_stream(duration=600):
     cv2.destroyAllWindows()
 
 # ✅ Run the video processing function
-if __name__ == "__main__":
-    process_video_stream()
+
