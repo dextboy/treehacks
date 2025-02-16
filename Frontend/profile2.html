@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Student Profile
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
+            font-family: 'Roboto', sans-serif;
+        }
+      .progress-container {
+          width: 80%;
+          background-color: #e0e0e0;
+          border-radius: 20px;
+          margin: 10px auto;
+          padding: 5px;
+      }
+      .progress-bar {
+          height: 20px;
+          width: 10%;
+          background-color: #4caf50;
+          border-radius: 20px;
+          transition: width 1s ease-in-out;
+      }
+  </style>
+ </head>
+ <body class="bg-gray-100 p-4">
+     <!-- Navbar -->
+     <header class="bg-white shadow-md">
+         <div class="container mx-auto flex justify-between items-center p-4">
+             <h1 class="text-3xl font-bold text-blue-600">Teacher.AI</h1>
+             <nav>
+                 <ul class="flex space-x-4">
+                     <li><a href="index.html" class="text-gray-700 hover:text-blue-600">Home</a></li>
+                     <li><a href="about.html" class="text-gray-700 hover:text-blue-600">About</a></li>
+                     <li><a href="features.html" class="text-gray-700 hover:text-blue-600">Features</a></li>
+                     <li><a href="profile.html" class="text-gray-700 hover:text-blue-600">Profile</a></li>
+                     <li><a href="#" class="text-gray-700 hover:text-blue-600">Contact</a></li>
+                 </ul>
+             </nav>
+         </div>
+     </header>
+  <main class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-lg">
+   <!-- Profile Details Section -->
+   <section class="mb-8">
+    <h2 class="text-2xl font-bold mb-4 text-blue-600">
+     Profile
+    </h2>
+    <div class="flex flex-col md:flex-row items-center">
+     <img alt="Profile picture of the user" class="w-32 h-32 rounded-full mb-4 md:mb-0 md:mr-4" height="150" src="dexterpfp.webp" width="150"/>
+     <div>
+      <h3 class="text-xl font-bold">
+       Dexter Tan
+      </h3>
+      <p class="text-gray-700">
+       School Year: Junior
+      </p>
+      <p class="text-gray-700">
+       Subject of Interest: English
+      </p>
+     </div>
+    </div>
+   </section>
+   <!-- Progress Section -->
+   <section class="mb-8">
+    <h2 class="text-2xl font-bold mb-4 text-blue-600">
+     Progress
+    </h2>
+    <div class="mb-4">
+     <p class="text-gray-700">
+      Chapter 1: Vocabulary Building
+     </p>
+     <div class="w-full bg-gray-200 rounded-full h-4">
+      <div class="bg-blue-600 h-4 rounded-full" id="chapter1Progress" style="width: 20%;">
+      </div>
+     </div>
+    </div>
+    <div class="mb-4">
+     <p class="text-gray-700">
+      Chapter 2: Reading Comprehension
+     </p>
+     <div class="w-full bg-gray-200 rounded-full h-4">
+      <div class="bg-green-600 h-4 rounded-full" id="chapter2Progress" style="width: 10%;">
+      </div>
+     </div>
+    </div>
+    <div class="mb-4">
+     <p class="text-gray-700">
+      Chapter 3: Writing Skills
+     </p>
+     <div class="w-full bg-gray-200 rounded-full h-4">
+      <div class="bg-purple-600 h-4 rounded-full" id="chapter3Progress" style="width: 30%;">
+      </div>
+     </div>
+    </div>
+   </section>
+    <section class="mb-8">
+        <h2 class="text-2xl font-bold mb-4 text-blue-600">Jetson Status</h2>
+        <p id="jetsonStatus" class="text-gray-600">Checking connection...</p>
+    </section>
+
+   <!-- Ask a Question Section -->
+   <section class="mb-8">
+    <h2 class="text-2xl font-bold mb-4 text-blue-600">
+     Ask a Question
+    </h2>
+    <textarea class="w-full p-3 border rounded mb-4" id="questionText" placeholder="Type your question here..."></textarea>
+    <button class="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700 transition" onclick="askQuestion()">
+     Ask
+    </button>
+   </section>
+   <!-- Recent Questions Section -->
+   <section>
+    <h2 class="text-2xl font-bold mb-4 text-blue-600">
+     Recent Questions
+    </h2>
+    <ul class="space-y-4" id="questionList">
+     <li class="bg-gray-100 p-4 rounded-lg shadow">
+      <p class="text-gray-700">
+        How do you organize an essay?
+      </p>
+     </li>
+     <li class="bg-gray-100 p-4 rounded-lg shadow">
+      <p class="text-gray-700">
+        What are the steps to writing a good paragraph?
+      </p>
+     </li>
+     <li class="bg-gray-100 p-4 rounded-lg shadow">
+      <p class="text-gray-700">
+        What is the importance of a thesis statement?
+      </p>
+     </li>
+    </ul>
+   </section>
+  </main>
+     <script>
+         // Function to check connection to the Jetson
+         function checkJetsonConnection() {
+             const JETSON_URL = "http://192.168.55.1/";
+
+             fetch(JETSON_URL, { mode: "no-cors" })
+                 .then(() => {
+                     console.log(" Jetson is online!");
+                     updateJetsonStatus(true);
+                     clearInterval(pingInterval); // Stop checking once connected
+                     updatePageWithData(); // Update the page with hardcoded data
+                 })
+                 .catch(() => {
+                     console.log(" Still waiting for connection...");
+                     updateJetsonStatus(false);
+                 });
+         }
+
+         // Function to update UI based on Jetson connection status
+         function updateJetsonStatus(isConnected) {
+             const statusElement = document.getElementById("jetsonStatus");
+
+             if (isConnected) {
+                 statusElement.textContent = " Jetson is Online!";
+                 statusElement.classList.add("text-green-600");
+                 statusElement.classList.remove("text-gray-600", "text-red-600");
+             } else {
+                 statusElement.textContent = " Jetson is Offline!";
+                 statusElement.classList.add("text-red-600");
+                 statusElement.classList.remove("text-gray-600", "text-green-600");
+             }
+         }
+
+         // Function to update the page with hardcoded data when Jetson is online
+         function updatePageWithData() {
+             console.log("🔄 Updating page with hardcoded data...");
+
+             // Example: Updating progress bars
+             document.getElementById("chapter1Progress").style.width = "70%";
+             document.getElementById("chapter2Progress").style.width = "40%";
+             document.getElementById("chapter3Progress").style.width = "37%";
+
+             // Example: Adding a message to the Recent Questions section
+             let questionList = document.getElementById("questionList");
+             let newMessage = document.createElement("li");
+             newMessage.className = "bg-gray-100 p-4 rounded-lg shadow";
+             newMessage.innerHTML = `<p class="text-gray-700"> Jetson is online! You can now ask real-time questions.</p>`;
+             questionList.prepend(newMessage);
+         }
+
+         // Set interval to check every 3 seconds (3000ms)
+         const pingInterval = setInterval(checkJetsonConnection, 3000);
+
+         // Run an immediate check on page load
+         document.addEventListener("DOMContentLoaded", checkJetsonConnection);
+
+     </script>
+ </body>
+</html>
