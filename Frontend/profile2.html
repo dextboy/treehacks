@@ -142,7 +142,7 @@
      <script>
          // Function to check connection to the Jetson
          function checkJetsonConnection() {
-             const JETSON_URL = "http://192.168.55.1/";
+             const JETSON_URL = "http://192.168.55.1:8000/status";
 
              fetch(JETSON_URL, { mode: "no-cors" })
                  .then(() => {
