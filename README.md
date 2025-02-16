@@ -1,5 +1,3 @@
-Here’s a `README.md` file that describes the download, installation, and setup process for your project:
-
 ````markdown
 # Teacher.ai
 
