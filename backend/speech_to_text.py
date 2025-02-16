@@ -1,8 +1,12 @@
 import os
-import wave
 import tempfile
+import time
+import traceback
+import subprocess
+
+from flask import Blueprint, request, jsonify, send_file
 import requests
-from flask import Blueprint, request, jsonify
+from pydub import AudioSegment  # for converting audio formats
 from extensions import llama_client
 
 # Create the blueprint for speech-related endpoints.
@@ -10,6 +14,10 @@ speech_to_text_bp = Blueprint('speech_to_text', __name__, url_prefix='/speech')
 
 # Global variable to hold conversation context.
 conversation_context = []
+
+# Configuration for remote playback
+RASPBERRY_PI_IP = "192.168.11.2"  # Replace with your Pi's IP address
+REMOTE_PLAY_SCRIPT = "/home/pi/AIY-projects-python/checkpoints/play_wav.py"
 
 def _transcribe_audio(file_path: str):
     """
@@ -29,6 +37,7 @@ def save_pcm_to_wav(pcm_data, file_path):
     """
     Convert raw PCM data to a WAV file.
     """
+    import wave
     with wave.open(file_path, 'wb') as wav_file:
         wav_file.setnchannels(1)     # Mono
         wav_file.setsampwidth(2)       # 16-bit samples
@@ -41,7 +50,7 @@ def transcribe_audio_route(audio_file):
     """
     if not audio_file:
         raise ValueError("No audio file provided")
-    
+
     with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as temp_audio:
         audio_file.save(temp_audio.name)
         try:
@@ -59,17 +68,15 @@ def chat_reply(transcription):
     """
     global conversation_context
     try:
-        # For demonstration, we define a system prompt.
-        system_prompt = "You are an education tool aime"
+        system_prompt = "You are an education tool."
         # Build the message sequence.
         message = [{"role": "system", "content": system_prompt}]
         message.extend(conversation_context)
         message.append({"role": "user", "content": transcription})
         conversation_context.append({"role": "user", "content": transcription})
-        
-        # Call your offline chat engine (this should be replaced with your actual API).
+
         completion = llama_client.chat.completions.create(
-            model="gpt-4o-mini",
+            model="gpt-4o-mini",  # Adjust to your actual model name
             messages=conversation_context,
         )
         reply = completion.choices[0].message.content
@@ -78,22 +85,28 @@ def chat_reply(transcription):
     except Exception as e:
         raise RuntimeError(f"Chat reply failed: {str(e)}")
 
-@speech_to_text_bp.route('/process', methods=['POST'])
-def process_speech():
+def generate_speech(text, output_file="output.mp3"):
     """
-    Endpoint that accepts an audio file, transcribes it, and returns a chat reply.
-    Expects the audio file to be sent with the key 'audio' in a multipart/form-data POST.
+    Generate speech audio from the given text using the Kokoro model.
+    Saves the output to a file and returns the file path.
     """
-    if 'audio' not in request.files:
-        return jsonify({"error": "No audio file provided"}), 400
-    audio_file = request.files['audio']
-    
     try:
-        transcription = transcribe_audio_route(audio_file)
-        reply = chat_reply(transcription)
-        return jsonify({
-            "transcription": transcription,
-            "reply": reply
-        })
+        from openai import OpenAI  # Ensure your OpenAI client supports this usage.
+        client = OpenAI(
+            base_url="http://localhost:8880/v1",  # Adjust as necessary
+            api_key="not-needed"  # If your local server does not require an API key
+        )
+        with client.audio.speech.with_streaming_response.create(
+            model="kokoro",
+            voice="af_sky+af_bella",  # Adjust as needed
+            input=text
+        ) as response:
+            response.stream_to_file(output_file)
+        return output_file
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        raise RuntimeError(f"Speech synthesis failed: {str(e)}")
+
+def convert_mp3_to_wav(mp3_file, wav_file="output.wav"):
+    """
+    Convert an MP3 file to WAV format.
+    Returns the WAV file path.
